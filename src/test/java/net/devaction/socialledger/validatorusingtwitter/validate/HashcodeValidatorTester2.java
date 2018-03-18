@@ -1,6 +1,8 @@
 package net.devaction.socialledger.validatorusingtwitter.validate;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -41,7 +43,7 @@ public class HashcodeValidatorTester2 {
         log.info("Going to test the HashcodeVerifier");
         
         //hashcodeVerifier.verify("hostia", "al0riel", LocalDateTime.of(2005, 1, 1, 0, 0));
-        hashcodeVerifier.validate("hosTIA", "al0riel", LocalDateTime.of(2005, 1, 1, 0, 0));
+        hashcodeVerifier.validate("hosTIA", "al0riel", ZonedDateTime.of(LocalDateTime.of(2005, 1, 1, 0, 0), ZoneId.systemDefault()));
         //hashcodeVerifier.verify("hosTIA", "alzzXX0riel", LocalDateTime.of(2005, 1, 1, 0, 0));
         
         log.info("Exiting");

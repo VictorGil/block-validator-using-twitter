@@ -49,9 +49,9 @@ public class HashcodeValidator{
         this.twitter = twitter;
     }
     
-    public boolean validate(String blockHashcode, String twitterUsername, LocalDateTime limitDatetime){
+    public boolean validate(String blockHashcode, String twitterUsername, ZonedDateTime limitDateTime){
         
-        LocalDateTime oldestTweetDateTime = LocalDateTime.now();
+        LocalDateTime oldestTweetLocalDateTime = LocalDateTime.now();
         int pageCount = 1;
         List<Status> statuses = null;
         
@@ -68,7 +68,7 @@ public class HashcodeValidator{
                 
                 Date oldestTweetDate = statuses.get(statuses.size() - 1).getCreatedAt();
                 ZonedDateTime oldestTweetZonedDateTime = oldestTweetDate.toInstant().atZone(ZoneId.systemDefault()); 
-                oldestTweetDateTime = oldestTweetZonedDateTime.toLocalDateTime();
+                oldestTweetLocalDateTime = oldestTweetZonedDateTime.toLocalDateTime();
                 log.debug("\"Created at\" date time of oldest tweet retrieved so far: " + FORMATTER.format(oldestTweetZonedDateTime));
                 
             } catch(TwitterException ex){
@@ -92,7 +92,7 @@ public class HashcodeValidator{
             }
             pageCount++;
         }
-        while(oldestTweetDateTime.isAfter(limitDatetime) && pageCount <= MAX_PAGE);
+        while(oldestTweetLocalDateTime.isAfter(limitDateTime.toLocalDateTime()) && pageCount <= MAX_PAGE);
         
         return false;
     }
