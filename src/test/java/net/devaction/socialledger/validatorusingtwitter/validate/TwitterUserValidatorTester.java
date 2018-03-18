@@ -1,6 +1,4 @@
-package net.devaction.socialledger.validatorusingtwitter.verify;
-
-import java.time.LocalDateTime;
+package net.devaction.socialledger.validatorusingtwitter.validate;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -11,7 +9,7 @@ import net.devaction.socialledger.validatorusingtwitter.key.DecryptedKeyPairProv
 import net.devaction.socialledger.validatorusingtwitter.key.KeyPair;
 import net.devaction.socialledger.validatorusingtwitter.token.DecryptedTokenPairProvider;
 import net.devaction.socialledger.validatorusingtwitter.token.TokenPair;
-import net.devaction.socialledger.validatorusingtwitter.validate.HashcodeValidator;
+import net.devaction.socialledger.validatorusingtwitter.validate.TwitterUserValidator;
 import twitter4j.Twitter;
 
 /**
@@ -19,10 +17,10 @@ import twitter4j.Twitter;
  * 
  * since Fri 2018-Mar-16 
  */
-public class HashcodeValidatorTester2 {
-    private static final Log log = LogFactory.getLog(HashcodeValidatorTester2.class);
+public class TwitterUserValidatorTester{
+    private static final Log log = LogFactory.getLog(TwitterUserValidatorTester.class);
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         GlobalProperties properties = GlobalProperties.getInstance();
         
         DecryptedKeyPairProvider decryptedKeyPairProvider = new DecryptedKeyPairProvider(
@@ -37,12 +35,10 @@ public class HashcodeValidatorTester2 {
         
         Twitter twitter = TwitterProvider.provide(keyPair, tokenPair);
         
-        HashcodeValidator hashcodeVerifier = new HashcodeValidator(twitter);
-        log.info("Going to test the HashcodeVerifier");
+        TwitterUserValidator twitterUserVerifier = new TwitterUserValidator(twitter);
+        log.info("Going to test the TwitterUserVerifier");
         
-        //hashcodeVerifier.verify("hostia", "al0riel", LocalDateTime.of(2005, 1, 1, 0, 0));
-        hashcodeVerifier.validate("hosTIA", "al0riel", LocalDateTime.of(2005, 1, 1, 0, 0));
-        //hashcodeVerifier.verify("hosTIA", "alzzXX0riel", LocalDateTime.of(2005, 1, 1, 0, 0));
+        boolean isValid = twitterUserVerifier.validate("al0riel"); 
         
         log.info("Exiting");
      }
