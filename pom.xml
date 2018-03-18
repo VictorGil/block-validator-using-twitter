@@ -16,11 +16,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>net.devaction.socialledger</groupId>
-            <artifactId>best-block-extradata-selector-interface</artifactId>
-            <version>1.0.0.0</version>
-        </dependency>
-        <dependency>
     	    <groupId>org.twitter4j</groupId>
             <artifactId>twitter4j-core</artifactId>
             <version>4.0.4</version>
