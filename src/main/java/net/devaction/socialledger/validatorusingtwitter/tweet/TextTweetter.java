@@ -21,18 +21,18 @@ public class TextTweetter{
         this.twitter = twitter;
     }
     
-    public void tweet(String text){
-        synchronized(twitter){
-            Status status = null;
-            try{
+    public void tweet(String text){        
+        Status status = null;
+        try{
+            synchronized(twitter){
                 status = twitter.updateStatus(text);
-                log.info("Tweet tweeted, id: " + status.getId() + ". Text: " + status.getText());
-            } catch(TwitterException ex){
-                String errMessage = "Unable to tweet: " + ex.toString(); 
-                log.error(errMessage, ex);
-                throw new RuntimeException(errMessage, ex);
             }
-        }        
+            log.info("Tweet tweeted, id: " + status.getId() + ". Text: " + status.getText());
+        } catch(TwitterException ex){
+            String errMessage = "Unable to tweet: " + ex.toString(); 
+            log.error(errMessage, ex);
+            throw new RuntimeException(errMessage, ex);
+        }                
     }
 }
 
