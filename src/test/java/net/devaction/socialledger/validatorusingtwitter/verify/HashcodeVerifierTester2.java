@@ -41,7 +41,7 @@ public class HashcodeVerifierTester2 {
         log.info("Going to test the HashcodeVerifier");
         
         //hashcodeVerifier.verify("hostia", "al0riel", LocalDateTime.of(2005, 1, 1, 0, 0));
-        hashcodeVerifier.verify("hosTIA", "al0riel", LocalDateTime.of(2005, 1, 1, 0, 0));
+        hashcodeVerifier.validate("hosTIA", "al0riel", LocalDateTime.of(2005, 1, 1, 0, 0));
         //hashcodeVerifier.verify("hosTIA", "alzzXX0riel", LocalDateTime.of(2005, 1, 1, 0, 0));
         
         log.info("Exiting");

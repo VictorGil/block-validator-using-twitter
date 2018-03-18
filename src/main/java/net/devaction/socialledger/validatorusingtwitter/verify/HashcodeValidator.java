@@ -49,7 +49,7 @@ public class HashcodeValidator{
         this.twitter = twitter;
     }
     
-    public boolean verify(String blockHashcode, String twitterUsername, LocalDateTime limitDatetime){
+    public boolean validate(String blockHashcode, String twitterUsername, LocalDateTime limitDatetime){
         
         LocalDateTime oldestTweetDateTime = LocalDateTime.now();
         int pageCount = 1;
