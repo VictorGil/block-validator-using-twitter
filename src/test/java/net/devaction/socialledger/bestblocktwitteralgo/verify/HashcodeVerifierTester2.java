@@ -5,8 +5,8 @@ import java.time.LocalDateTime;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import net.devaction.socialledger.bestblocktwitteralgo.GlobalProperties;
-import net.devaction.socialledger.bestblocktwitteralgo.TwitterProvider;
+import net.devaction.socialledger.validatorusingtwitter.GlobalProperties;
+import net.devaction.socialledger.validatorusingtwitter.TwitterProvider;
 import net.devaction.socialledger.validatorusingtwitter.key.DecryptedKeyPairProvider;
 import net.devaction.socialledger.validatorusingtwitter.key.KeyPair;
 import net.devaction.socialledger.validatorusingtwitter.token.DecryptedTokenPairProvider;

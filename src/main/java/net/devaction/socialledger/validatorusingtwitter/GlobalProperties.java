@@ -1,4 +1,4 @@
-package net.devaction.socialledger.bestblocktwitteralgo;
+package net.devaction.socialledger.validatorusingtwitter;
 
 import java.io.IOException;
 import java.io.InputStream;
