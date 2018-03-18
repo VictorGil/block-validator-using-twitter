@@ -38,7 +38,7 @@ public class TwitterUserValidatorTester{
         TwitterUserValidator twitterUserVerifier = new TwitterUserValidator(twitter);
         log.info("Going to test the TwitterUserVerifier");
         
-        boolean isVerified = twitterUserVerifier.verify("al0riel"); 
+        boolean isVerified = twitterUserVerifier.validate("al0riel"); 
         
         log.info("Exiting");
      }

@@ -9,6 +9,7 @@ import java.util.Date;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import net.devaction.socialledger.validatorusingtwitter.TwitterProvider;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.User;
@@ -25,12 +26,20 @@ public class TwitterUserValidator{
     
     private final Twitter twitter;
     private static final LocalDateTime limitLDT = LocalDateTime.of(2018, 1, 1, 0, 0);
+    private static TwitterUserValidator INSTANCE;
+    
+    public static TwitterUserValidator getInstance(){
+        if (INSTANCE == null){
+            INSTANCE = new TwitterUserValidator(TwitterProvider.getInstance().provide());
+        }
+        return INSTANCE;
+    }
     
     public TwitterUserValidator(Twitter twitter){
         this.twitter = twitter;
     }
     
-    public boolean verify(String username){
+    public boolean validate(String username){
         User user = null;
         try{
             
