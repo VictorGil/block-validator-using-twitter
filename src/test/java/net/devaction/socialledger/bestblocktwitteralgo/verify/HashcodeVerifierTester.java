@@ -18,9 +18,8 @@ import net.devaction.socialledger.bestblocktwitteralgo.GlobalProperties;
 import net.devaction.socialledger.bestblocktwitteralgo.TwitterProvider;
 import net.devaction.socialledger.bestblocktwitteralgo.key.DecryptedKeyPairProvider;
 import net.devaction.socialledger.bestblocktwitteralgo.key.KeyPair;
-import net.devaction.socialledger.bestblocktwitteralgo.token.DecryptedTokenPairProvider;
-import net.devaction.socialledger.bestblocktwitteralgo.token.TokenPair;
-
+import net.devaction.socialledger.validatorusingtwitter.token.DecryptedTokenPairProvider;
+import net.devaction.socialledger.validatorusingtwitter.token.TokenPair;
 import twitter4j.Paging;
 import twitter4j.Status;
 import twitter4j.Twitter;

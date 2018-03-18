@@ -1,4 +1,4 @@
-package net.devaction.socialledger.bestblocktwitteralgo.token;
+package net.devaction.socialledger.validatorusingtwitter.token;
 
 /**
  * @author Víctor Gil
