@@ -22,21 +22,29 @@ public class TextTweeterTester{
     public static void main(String[] args) {
         GlobalProperties properties = GlobalProperties.getInstance();
         
+        /*
         DecryptedKeyPairProvider decryptedKeyPairProvider = new DecryptedKeyPairProvider(
                 properties.TWITTER_CONSUMER_API_KEY_ENCRYPTED, properties.TWITTER_CONSUMER_API_SECRET_ENCRYPTED,
-                properties.DECRYPT_PASSWORD_ENV_VAR_NAME);        
+                properties.DECRYPT_PASSWORD_ENV_VAR_NAME);
+        */
+        DecryptedKeyPairProvider decryptedKeyPairProvider = new DecryptedKeyPairProvider(
+                properties.TWITTER_CONSUMER_API_KEY, properties.TWITTER_CONSUMER_API_SECRET);
+        
         KeyPair keyPair = decryptedKeyPairProvider.provide();
         
+        /*
         DecryptedTokenPairProvider decryptedTokenPairProvider = new DecryptedTokenPairProvider(
                 properties.TWITTER_ACCESS_TOKEN_ENCRYPTED, properties.TWITTER_ACCESS_TOKEN_SECRET_ENCRYPTED,
                 properties.DECRYPT_PASSWORD_ENV_VAR_NAME);
+        */
+        DecryptedTokenPairProvider decryptedTokenPairProvider = new DecryptedTokenPairProvider(
+                properties.TWITTER_ACCESS_TOKEN, properties.TWITTER_ACCESS_TOKEN_SECRET);        
+        
         TokenPair tokenPair = decryptedTokenPairProvider.provide();
         
         Twitter twitter = TwitterProvider.provide(keyPair, tokenPair);
         TextTweetter textTweeter = new TextTweetter(twitter);
         textTweeter.tweet("test1 - please disregard");
-        
-        //I get an error: Read-only application cannot POST.
     }
 }
 

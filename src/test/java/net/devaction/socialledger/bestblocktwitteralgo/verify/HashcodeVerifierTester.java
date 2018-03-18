@@ -20,7 +20,7 @@ import net.devaction.socialledger.bestblocktwitteralgo.key.DecryptedKeyPairProvi
 import net.devaction.socialledger.bestblocktwitteralgo.key.KeyPair;
 import net.devaction.socialledger.bestblocktwitteralgo.token.DecryptedTokenPairProvider;
 import net.devaction.socialledger.bestblocktwitteralgo.token.TokenPair;
-import net.devaction.socialledger.bestblocktwitteralgo.tweet.TextTweetter;
+
 import twitter4j.Paging;
 import twitter4j.Status;
 import twitter4j.Twitter;
@@ -37,21 +37,33 @@ public class HashcodeVerifierTester {
     public static void main(String[] args) {
         GlobalProperties properties = GlobalProperties.getInstance();
         
+        /*
         DecryptedKeyPairProvider decryptedKeyPairProvider = new DecryptedKeyPairProvider(
                 properties.TWITTER_CONSUMER_API_KEY_ENCRYPTED, properties.TWITTER_CONSUMER_API_SECRET_ENCRYPTED,
-                properties.DECRYPT_PASSWORD_ENV_VAR_NAME);        
+                properties.DECRYPT_PASSWORD_ENV_VAR_NAME);
+        */
+        
+        DecryptedKeyPairProvider decryptedKeyPairProvider = new DecryptedKeyPairProvider(
+                properties.TWITTER_CONSUMER_API_KEY, properties.TWITTER_CONSUMER_API_SECRET);
+        
         KeyPair keyPair = decryptedKeyPairProvider.provide();
         
+        /*
         DecryptedTokenPairProvider decryptedTokenPairProvider = new DecryptedTokenPairProvider(
                 properties.TWITTER_ACCESS_TOKEN_ENCRYPTED, properties.TWITTER_ACCESS_TOKEN_SECRET_ENCRYPTED,
                 properties.DECRYPT_PASSWORD_ENV_VAR_NAME);
+        */
+        
+        DecryptedTokenPairProvider decryptedTokenPairProvider = new DecryptedTokenPairProvider(
+                properties.TWITTER_ACCESS_TOKEN, properties.TWITTER_ACCESS_TOKEN_SECRET);
+        
         TokenPair tokenPair = decryptedTokenPairProvider.provide();
         
         Twitter twitter = TwitterProvider.provide(keyPair, tokenPair);
         
         //it seems that 200 is the highest number you can get
-        //Paging paging = new Paging(1, 200);
-        Paging paging = new Paging(1);
+        Paging paging = new Paging(1, 200);
+        //Paging paging = new Paging(1);
         //paging.setMaxId(Long.MAX_VALUE); //this returns 400:The request was invalid. code - 214
         //paging.setSinceId(1L); //this returns only 20
         List<Status> statuses = null;

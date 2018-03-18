@@ -26,7 +26,7 @@ public class TextTweetter{
             Status status = null;
             try{
                 status = twitter.updateStatus(text);
-                log.info("Tweet tweeted: " + status);
+                log.info("Tweet tweeted, id: " + status.getId() + ". Text: " + status.getText());
             } catch(TwitterException ex){
                 String errMessage = "Unable to tweet: " + ex.toString(); 
                 log.error(errMessage, ex);
