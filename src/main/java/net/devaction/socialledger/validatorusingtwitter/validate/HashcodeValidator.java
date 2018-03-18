@@ -1,4 +1,4 @@
-package net.devaction.socialledger.validatorusingtwitter.verify;
+package net.devaction.socialledger.validatorusingtwitter.validate;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;

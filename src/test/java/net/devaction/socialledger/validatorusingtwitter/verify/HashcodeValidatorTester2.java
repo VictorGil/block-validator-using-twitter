@@ -11,7 +11,7 @@ import net.devaction.socialledger.validatorusingtwitter.key.DecryptedKeyPairProv
 import net.devaction.socialledger.validatorusingtwitter.key.KeyPair;
 import net.devaction.socialledger.validatorusingtwitter.token.DecryptedTokenPairProvider;
 import net.devaction.socialledger.validatorusingtwitter.token.TokenPair;
-import net.devaction.socialledger.validatorusingtwitter.verify.HashcodeValidator;
+import net.devaction.socialledger.validatorusingtwitter.validate.HashcodeValidator;
 import twitter4j.Twitter;
 
 /**

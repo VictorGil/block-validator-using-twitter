@@ -1,4 +1,4 @@
-package net.devaction.socialledger.validatorusingtwitter.verify;
+package net.devaction.socialledger.validatorusingtwitter.validate;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

@@ -9,7 +9,7 @@ import net.devaction.socialledger.validatorusingtwitter.key.DecryptedKeyPairProv
 import net.devaction.socialledger.validatorusingtwitter.key.KeyPair;
 import net.devaction.socialledger.validatorusingtwitter.token.DecryptedTokenPairProvider;
 import net.devaction.socialledger.validatorusingtwitter.token.TokenPair;
-import net.devaction.socialledger.validatorusingtwitter.verify.TwitterUserValidator;
+import net.devaction.socialledger.validatorusingtwitter.validate.TwitterUserValidator;
 import twitter4j.Twitter;
 
 /**
@@ -38,7 +38,7 @@ public class TwitterUserValidatorTester{
         TwitterUserValidator twitterUserVerifier = new TwitterUserValidator(twitter);
         log.info("Going to test the TwitterUserVerifier");
         
-        boolean isVerified = twitterUserVerifier.validate("al0riel"); 
+        boolean isValid = twitterUserVerifier.validate("al0riel"); 
         
         log.info("Exiting");
      }
