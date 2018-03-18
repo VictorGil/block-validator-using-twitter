@@ -1,7 +1,5 @@
 package net.devaction.socialledger.validatorusingtwitter.verify;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -35,7 +33,11 @@ public class TwitterUserValidator{
     public boolean verify(String username){
         User user = null;
         try{
-            user = twitter.showUser(username);
+            
+            synchronized(twitter){
+                user = twitter.showUser(username);
+            }
+            
             if (user == null){
                 log.info("Twitter user " + username + " not found");
                 return false;
