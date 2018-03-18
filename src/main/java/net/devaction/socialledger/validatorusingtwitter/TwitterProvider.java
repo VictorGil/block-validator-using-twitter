@@ -24,7 +24,7 @@ public class TwitterProvider{
     private final KeyPair keyPair;
     private final TokenPair tokenPair;
     
-    public TwitterProvider getInstance(){
+    public static TwitterProvider getInstance(){
         if (INSTANCE == null)
             INSTANCE = new TwitterProvider();
         return INSTANCE;
