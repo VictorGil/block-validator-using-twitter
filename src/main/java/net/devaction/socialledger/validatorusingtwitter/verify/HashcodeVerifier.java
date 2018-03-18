@@ -49,7 +49,11 @@ public class HashcodeVerifier{
             Paging paging = new Paging(pageCount, PAGE_SIZE);
             try{
                 log.info("Going to call Twitter API to get the timeline of " + twitterUsername);
-                statuses = twitter.getUserTimeline(twitterUsername, paging);
+                
+                synchronized(twitter){
+                    statuses = twitter.getUserTimeline(twitterUsername, paging);
+                }
+                
                 log.debug("Number of tweets retrieved: " + statuses.size());
                 
                 Date oldestTweetDate = statuses.get(statuses.size() - 1).getCreatedAt();
