@@ -1,4 +1,4 @@
-package net.devaction.socialledger.bestblocktwitteralgo.key;
+package net.devaction.socialledger.validatorusingtwitter.key;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

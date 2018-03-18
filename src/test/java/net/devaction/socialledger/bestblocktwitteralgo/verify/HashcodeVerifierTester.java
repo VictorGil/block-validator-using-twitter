@@ -16,8 +16,8 @@ import org.apache.commons.logging.LogFactory;
 
 import net.devaction.socialledger.bestblocktwitteralgo.GlobalProperties;
 import net.devaction.socialledger.bestblocktwitteralgo.TwitterProvider;
-import net.devaction.socialledger.bestblocktwitteralgo.key.DecryptedKeyPairProvider;
-import net.devaction.socialledger.bestblocktwitteralgo.key.KeyPair;
+import net.devaction.socialledger.validatorusingtwitter.key.DecryptedKeyPairProvider;
+import net.devaction.socialledger.validatorusingtwitter.key.KeyPair;
 import net.devaction.socialledger.validatorusingtwitter.token.DecryptedTokenPairProvider;
 import net.devaction.socialledger.validatorusingtwitter.token.TokenPair;
 import twitter4j.Paging;

@@ -1,4 +1,4 @@
-package net.devaction.socialledger.bestblocktwitteralgo.key;
+package net.devaction.socialledger.validatorusingtwitter.key;
 
 /**
  * @author Víctor Gil
