@@ -11,6 +11,7 @@ import net.devaction.socialledger.bestblocktwitteralgo.key.DecryptedKeyPairProvi
 import net.devaction.socialledger.bestblocktwitteralgo.key.KeyPair;
 import net.devaction.socialledger.bestblocktwitteralgo.token.DecryptedTokenPairProvider;
 import net.devaction.socialledger.bestblocktwitteralgo.token.TokenPair;
+import net.devaction.socialledger.validatorusingtwitter.verify.HashcodeVerifier;
 import twitter4j.Twitter;
 
 /**
