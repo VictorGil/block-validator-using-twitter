@@ -10,6 +10,7 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import net.devaction.socialledger.validatorusingtwitter.TwitterProvider;
 import twitter4j.Paging;
 import twitter4j.Status;
 import twitter4j.Twitter;
@@ -35,6 +36,15 @@ public class HashcodeVerifier{
     private static final String DATE_TIME_PATTERN = "EEE yyyy-MM-dd HH:mm:ss.SSS Z (z)";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(DATE_TIME_PATTERN);
  
+    private static HashcodeVerifier INSTANCE;
+    
+    public static HashcodeVerifier getInstance(){
+        if (INSTANCE == null){
+            INSTANCE= new  HashcodeVerifier(TwitterProvider.getInstance().provide());
+        }
+        return INSTANCE;
+    }
+    
     public HashcodeVerifier(Twitter twitter){
         this.twitter = twitter;
     }
