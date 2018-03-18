@@ -21,9 +21,9 @@ import twitter4j.TwitterException;
  * 
  * since Fri 2018-Mar-16 
  */
-public class HashcodeVerifier{
+public class HashcodeValidator{
     //private static final String DATE_TIME_FORMAT = "EEE yyyy-MM-dd HH:mm:ss.SSS Z (z)";
-    private static final Log log = LogFactory.getLog(HashcodeVerifier.class);
+    private static final Log log = LogFactory.getLog(HashcodeValidator.class);
     
     private final Twitter twitter;
     
@@ -36,16 +36,16 @@ public class HashcodeVerifier{
     private static final String DATE_TIME_PATTERN = "EEE yyyy-MM-dd HH:mm:ss.SSS Z (z)";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(DATE_TIME_PATTERN);
  
-    private static HashcodeVerifier INSTANCE;
+    private static HashcodeValidator INSTANCE;
     
-    public static HashcodeVerifier getInstance(){
+    public static HashcodeValidator getInstance(){
         if (INSTANCE == null){
-            INSTANCE= new  HashcodeVerifier(TwitterProvider.getInstance().provide());
+            INSTANCE= new  HashcodeValidator(TwitterProvider.getInstance().provide());
         }
         return INSTANCE;
     }
     
-    public HashcodeVerifier(Twitter twitter){
+    public HashcodeValidator(Twitter twitter){
         this.twitter = twitter;
     }
     

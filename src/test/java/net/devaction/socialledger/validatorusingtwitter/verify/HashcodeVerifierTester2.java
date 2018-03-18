@@ -11,7 +11,7 @@ import net.devaction.socialledger.validatorusingtwitter.key.DecryptedKeyPairProv
 import net.devaction.socialledger.validatorusingtwitter.key.KeyPair;
 import net.devaction.socialledger.validatorusingtwitter.token.DecryptedTokenPairProvider;
 import net.devaction.socialledger.validatorusingtwitter.token.TokenPair;
-import net.devaction.socialledger.validatorusingtwitter.verify.HashcodeVerifier;
+import net.devaction.socialledger.validatorusingtwitter.verify.HashcodeValidator;
 import twitter4j.Twitter;
 
 /**
@@ -37,7 +37,7 @@ public class HashcodeVerifierTester2 {
         
         Twitter twitter = TwitterProvider.provide(keyPair, tokenPair);
         
-        HashcodeVerifier hashcodeVerifier = new HashcodeVerifier(twitter);
+        HashcodeValidator hashcodeVerifier = new HashcodeValidator(twitter);
         log.info("Going to test the HashcodeVerifier");
         
         //hashcodeVerifier.verify("hostia", "al0riel", LocalDateTime.of(2005, 1, 1, 0, 0));
