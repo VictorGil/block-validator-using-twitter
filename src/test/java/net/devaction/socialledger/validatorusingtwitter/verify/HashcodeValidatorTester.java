@@ -30,8 +30,8 @@ import twitter4j.TwitterException;
  * 
  * since Fri 2018-Mar-16 
  */
-public class HashcodeVerifierTester {
-    private static final Log log = LogFactory.getLog(HashcodeVerifierTester.class);
+public class HashcodeValidatorTester {
+    private static final Log log = LogFactory.getLog(HashcodeValidatorTester.class);
 
     public static void main(String[] args) {
         GlobalProperties properties = GlobalProperties.getInstance();

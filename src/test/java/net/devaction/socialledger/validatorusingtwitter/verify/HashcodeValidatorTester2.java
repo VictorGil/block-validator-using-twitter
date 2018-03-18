@@ -19,8 +19,8 @@ import twitter4j.Twitter;
  * 
  * since Fri 2018-Mar-16 
  */
-public class HashcodeVerifierTester2 {
-    private static final Log log = LogFactory.getLog(HashcodeVerifierTester2.class);
+public class HashcodeValidatorTester2 {
+    private static final Log log = LogFactory.getLog(HashcodeValidatorTester2.class);
 
     public static void main(String[] args) {
         GlobalProperties properties = GlobalProperties.getInstance();
