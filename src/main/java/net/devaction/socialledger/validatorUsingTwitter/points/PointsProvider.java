@@ -1,4 +1,4 @@
-package net.devaction.socialledger.bestblocktwitteralgo.points;
+package net.devaction.socialledger.validatorUsingTwitter.points;
 
 //import org.slf4j.Logger;
 import org.apache.commons.logging.Log;
