@@ -9,6 +9,7 @@ import net.devaction.socialledger.bestblocktwitteralgo.key.DecryptedKeyPairProvi
 import net.devaction.socialledger.bestblocktwitteralgo.key.KeyPair;
 import net.devaction.socialledger.bestblocktwitteralgo.token.DecryptedTokenPairProvider;
 import net.devaction.socialledger.bestblocktwitteralgo.token.TokenPair;
+import net.devaction.socialledger.validatorusingtwitter.tweet.TextTweetter;
 import twitter4j.Twitter;
 
 /**
