@@ -26,6 +26,9 @@
     <logger name="twitter4j">
         <level value="warn"/>
     </logger>
+    <logger name="net.devaction.socialledger.validatorusingtwitter.validate.StringSearcher">
+        <level value="trace"/>
+    </logger>    
 	<root>
 		<level value="debug"/>
 		<appender-ref ref="console" />

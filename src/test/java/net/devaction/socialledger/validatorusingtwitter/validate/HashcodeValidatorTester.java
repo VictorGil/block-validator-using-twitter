@@ -29,8 +29,7 @@ public class HashcodeValidatorTester {
     private static final Log log = LogFactory.getLog(HashcodeValidatorTester.class);
 
     public static void main(String[] args) {
-        DecryptedKeyPairProvider decryptedKeyPairProvider = DecryptedKeyPairProviderFactory.getInstance(); 
-        
+        DecryptedKeyPairProvider decryptedKeyPairProvider = DecryptedKeyPairProviderFactory.getInstance();        
         KeyPair keyPair = decryptedKeyPairProvider.provide();
 
         DecryptedTokenPairProvider decryptedTokenPairProvider = DecryptedTokenPairProviderFactory.getInstance();

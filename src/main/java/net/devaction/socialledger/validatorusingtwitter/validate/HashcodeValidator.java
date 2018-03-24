@@ -54,6 +54,7 @@ public class HashcodeValidator{
         int pageCount = 1;
         List<Status> statuses = null;
         
+        boolean shouldWeCallTwitterAgain = false;
         do{ 
             Paging paging = new Paging(pageCount, PAGE_SIZE);
             try{
@@ -66,6 +67,8 @@ public class HashcodeValidator{
                 }
                 
                 log.debug("Number of tweets retrieved: " + statuses.size());
+                if (statuses.isEmpty())
+                    return false;
                 
                 Date oldestTweetDate = statuses.get(statuses.size() - 1).getCreatedAt();
                 ZonedDateTime oldestTweetZonedDateTime = oldestTweetDate.toInstant().atZone(ZoneId.systemDefault()); 
@@ -84,19 +87,20 @@ public class HashcodeValidator{
             
             if (StringSearcher.search(blockHashcode, statuses))
                 return true;
-                
-            try{
-                //(15 min * 60 sec/min) / 1500 = 0.6 seconds
-                Thread.sleep(MILLIS_TO_SLEEP);
-            } catch(InterruptedException ex){
+            
+            pageCount++;            
+            shouldWeCallTwitterAgain = oldestTweetLocalDateTime.isAfter(limitZonedDateTime.toLocalDateTime()) && pageCount <= MAX_PAGE;
+            if (shouldWeCallTwitterAgain) {
+                try{
+                    //(15 min * 60 sec/min) / 1500 = 0.6 seconds
+                    Thread.sleep(MILLIS_TO_SLEEP);
+                } catch(InterruptedException ex){
                 log.error("Thread interrupted while sleeping! " + ex.toString(), ex);
+                }
             }
-            pageCount++;
         }
-        while(oldestTweetLocalDateTime.isAfter(limitZonedDateTime.toLocalDateTime()) && pageCount <= MAX_PAGE);
+        while(shouldWeCallTwitterAgain);
         
         return false;
     }
 }
-
-

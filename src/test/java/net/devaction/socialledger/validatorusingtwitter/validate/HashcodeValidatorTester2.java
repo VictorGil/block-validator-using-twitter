@@ -15,19 +15,17 @@ import net.devaction.socialledger.validatorusingtwitter.token.DecryptedTokenPair
 import net.devaction.socialledger.validatorusingtwitter.token.DecryptedTokenPairProviderFactory;
 import net.devaction.socialledger.validatorusingtwitter.token.TokenPair;
 import net.devaction.socialledger.validatorusingtwitter.validate.HashcodeValidator;
-import twitter4j.Twitter;
 
 /**
  * @author Víctor Gil
  * 
  * since Fri 2018-Mar-16 
  */
-public class HashcodeValidatorTester2 {
+public class HashcodeValidatorTester2{
     private static final Log log = LogFactory.getLog(HashcodeValidatorTester2.class);
 
     public static void main(String[] args) {
-        DecryptedKeyPairProvider decryptedKeyPairProvider = DecryptedKeyPairProviderFactory.getInstance(); 
-        
+        DecryptedKeyPairProvider decryptedKeyPairProvider = DecryptedKeyPairProviderFactory.getInstance();         
         KeyPair keyPair = decryptedKeyPairProvider.provide();
 
         DecryptedTokenPairProvider decryptedTokenPairProvider = DecryptedTokenPairProviderFactory.getInstance();
@@ -36,14 +34,11 @@ public class HashcodeValidatorTester2 {
         TwitterProvider twitterProvider = new TwitterProvider(keyPair.getConsumerApiKey(), 
                 keyPair.getConsumerApiSecret(), tokenPair.getAccesToken(), tokenPair.getAccessTokenSecret());
         
-        Twitter twitter = twitterProvider.provide();
-        
-        HashcodeValidator hashcodeVerifier = new HashcodeValidator(twitter);
+        HashcodeValidator hashcodeVerifier = new HashcodeValidator(twitterProvider.provide());
         log.info("Going to test the HashcodeVerifier");
         
-        //hashcodeVerifier.verify("hostia", "al0riel", LocalDateTime.of(2005, 1, 1, 0, 0));
-        hashcodeVerifier.validate("hosTIA", "al0riel", ZonedDateTime.of(LocalDateTime.of(2005, 1, 1, 0, 0), ZoneId.systemDefault()));
-        //hashcodeVerifier.verify("hosTIA", "alzzXX0riel", LocalDateTime.of(2005, 1, 1, 0, 0));
+        String blockHashcode = "ddf2523f1717b2027d322c5f237d7729967f9082a41a70a93c085b6445d1c538";
+        hashcodeVerifier.validate(blockHashcode, "devactionnet", ZonedDateTime.of(LocalDateTime.of(2005, 1, 1, 0, 0), ZoneId.systemDefault()));
         
         log.info("Exiting");
      }

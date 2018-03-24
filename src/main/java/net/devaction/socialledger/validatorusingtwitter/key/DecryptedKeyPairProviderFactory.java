@@ -19,13 +19,15 @@ public class DecryptedKeyPairProviderFactory {
         GlobalProperties properties = GlobalProperties.getInstance();
         
         DecryptedKeyPairProvider decryptedKeyPairProvider;
-        if (properties.TWITTER_ACCESS_TOKEN == null) {
+        if (properties.TWITTER_CONSUMER_API_KEY == null || properties.TWITTER_CONSUMER_API_KEY.length() == 0){
+            log.debug("Using encrypted config properties values for the Twitter consumer API key and the Twitter Consumer API secret");
             decryptedKeyPairProvider = new DecryptedKeyPairProvider(
                     properties.TWITTER_CONSUMER_API_KEY_ENCRYPTED, properties.TWITTER_CONSUMER_API_SECRET_ENCRYPTED,
                     properties.DECRYPT_PASSWORD_ENV_VAR_NAME);
         } else{
+            log.debug("Using unencrypted config properties values for the Twitter consumer API key and the Twitter Consumer API secret");
             decryptedKeyPairProvider = new DecryptedKeyPairProvider(
-                    properties.TWITTER_CONSUMER_API_KEY, properties.TWITTER_CONSUMER_API_SECRET_ENCRYPTED);
+                    properties.TWITTER_CONSUMER_API_KEY, properties.TWITTER_CONSUMER_API_SECRET);
         }
         
         return decryptedKeyPairProvider;  
