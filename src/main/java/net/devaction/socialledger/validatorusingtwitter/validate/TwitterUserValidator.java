@@ -9,7 +9,6 @@ import java.util.Date;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import net.devaction.socialledger.validatorusingtwitter.TwitterProvider;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.User;
@@ -25,15 +24,7 @@ public class TwitterUserValidator{
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(DATE_TIME_PATTERN);
     
     private final Twitter twitter;
-    private static final LocalDateTime limitLDT = LocalDateTime.of(2018, 1, 1, 0, 0);
-    private static TwitterUserValidator INSTANCE;
-    
-    public static TwitterUserValidator getInstance(){
-        if (INSTANCE == null){
-            INSTANCE = new TwitterUserValidator(TwitterProvider.getInstance().provide());
-        }
-        return INSTANCE;
-    }
+    private static final LocalDateTime LIMIT_LDT = LocalDateTime.of(2018, 1, 1, 0, 0);
     
     public TwitterUserValidator(Twitter twitter){
         this.twitter = twitter;
@@ -68,12 +59,10 @@ public class TwitterUserValidator{
         Date userCreatedAtDate = user.getCreatedAt();
         ZonedDateTime userCreatedAtZoned = userCreatedAtDate.toInstant().atZone(ZoneId.systemDefault());
         LocalDateTime userCreatedAt = userCreatedAtZoned.toLocalDateTime();
-        Boolean isVerified = userCreatedAt.isBefore(limitLDT);
+        Boolean isVerified = userCreatedAt.isBefore(LIMIT_LDT);
         if (isVerified){
             log.info("Twitter user " + username + " is valid. Created at: " + FORMATTER.format(userCreatedAtZoned));
         }
         return isVerified;        
     }
 }
-
-

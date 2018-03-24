@@ -1,5 +1,6 @@
 package net.devaction.socialledger.validatorusingtwitter.validate;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -10,7 +11,6 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import net.devaction.socialledger.validatorusingtwitter.TwitterProvider;
 import twitter4j.Paging;
 import twitter4j.Status;
 import twitter4j.Twitter;
@@ -36,20 +36,19 @@ public class HashcodeValidator{
     private static final String DATE_TIME_PATTERN = "EEE yyyy-MM-dd HH:mm:ss.SSS Z (z)";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(DATE_TIME_PATTERN);
  
-    private static HashcodeValidator INSTANCE;
-    
-    public static HashcodeValidator getInstance(){
-        if (INSTANCE == null){
-            INSTANCE= new  HashcodeValidator(TwitterProvider.getInstance().provide());
-        }
-        return INSTANCE;
-    }
-    
     public HashcodeValidator(Twitter twitter){
         this.twitter = twitter;
     }
     
-    public boolean validate(String blockHashcode, String twitterUsername, ZonedDateTime limitDateTime){
+    public boolean validate(String blockHashcode, String twitterUsername, long limitTimestampInMillis){
+        Date limitDate = new Date(limitTimestampInMillis);
+        Instant limitInstant = Instant.ofEpochMilli(limitDate.getTime());
+        ZonedDateTime limitZonedDateTime = ZonedDateTime.ofInstant(limitInstant, ZoneId.systemDefault());
+        
+        return validate(blockHashcode, twitterUsername, limitZonedDateTime);
+    }
+    
+    boolean validate(String blockHashcode, String twitterUsername, ZonedDateTime limitZonedDateTime){
         
         LocalDateTime oldestTweetLocalDateTime = LocalDateTime.now();
         int pageCount = 1;
@@ -58,7 +57,9 @@ public class HashcodeValidator{
         do{ 
             Paging paging = new Paging(pageCount, PAGE_SIZE);
             try{
-                log.info("Going to call Twitter API to get the timeline of " + twitterUsername);
+                log.info("Going to call Twitter API to get the timeline of " + twitterUsername + 
+                        ", block hashcode to verify: " + blockHashcode + 
+                        ", limit time: " + FORMATTER.format(limitZonedDateTime));
                 
                 synchronized(twitter){
                     statuses = twitter.getUserTimeline(twitterUsername, paging);
@@ -92,7 +93,7 @@ public class HashcodeValidator{
             }
             pageCount++;
         }
-        while(oldestTweetLocalDateTime.isAfter(limitDateTime.toLocalDateTime()) && pageCount <= MAX_PAGE);
+        while(oldestTweetLocalDateTime.isAfter(limitZonedDateTime.toLocalDateTime()) && pageCount <= MAX_PAGE);
         
         return false;
     }

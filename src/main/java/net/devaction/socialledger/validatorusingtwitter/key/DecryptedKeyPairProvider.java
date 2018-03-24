@@ -45,8 +45,7 @@ public class DecryptedKeyPairProvider{
         this.decryptPasswordEnvVarName = decryptPasswordEnvVarName;
         
         consumerApiKey = null;
-        consumerApiSecret = null;
-        
+        consumerApiSecret = null;        
     }
     
     /**
@@ -54,7 +53,7 @@ public class DecryptedKeyPairProvider{
      * instead of this one.
      */
     public DecryptedKeyPairProvider(String consumerApiKey, String consumerApiSecret){
-        if (consumerApiKey == null || consumerApiKey.length() == 0) {
+        if (consumerApiKey == null || consumerApiKey.length() == 0){
             String errMessage= "The Twitter consumer API key cannot be null nor empty";
             log.fatal(errMessage);
             throw new RuntimeException(errMessage);
@@ -71,8 +70,7 @@ public class DecryptedKeyPairProvider{
         this.consumerApiKeyEncrypted = null;
         this.consumerApiSecretEncrypted = null;
         this.decryptPasswordEnvVarName = null;
-    }
-    
+    }    
     
     public KeyPair provide(){
         if (consumerApiKey == null){
