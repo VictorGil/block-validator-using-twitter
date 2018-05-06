@@ -55,14 +55,26 @@ public class TwitterUserValidator{
                 log.error(errMessage, ex);
             return false;
         } 
+
+        //Boolean isVerified = isUserOldEnough(user);
+        //We accept the Twitter user no matter when it was created
+        //we may consider to add the restriction in the future for security reasons
+        Boolean isVerified = true;
         
-        Date userCreatedAtDate = user.getCreatedAt();
-        ZonedDateTime userCreatedAtZoned = userCreatedAtDate.toInstant().atZone(ZoneId.systemDefault());
-        LocalDateTime userCreatedAt = userCreatedAtZoned.toLocalDateTime();
-        Boolean isVerified = userCreatedAt.isBefore(LIMIT_LDT);
         if (isVerified){
-            log.info("Twitter user " + username + " is valid. Created at: " + FORMATTER.format(userCreatedAtZoned));
+            log.info("Twitter user " + username + " is valid. Created at: " + 
+                    FORMATTER.format(user.getCreatedAt().toInstant().atZone(ZoneId.systemDefault())));
         }
         return isVerified;        
+    }
+    
+    static boolean isUserOldEnough(User user){
+        return isUserOldEnough(user.getCreatedAt());
+    }
+    
+    static boolean isUserOldEnough(Date userCreatedAtDate){
+        ZonedDateTime userCreatedAtZoned = userCreatedAtDate.toInstant().atZone(ZoneId.systemDefault());
+        LocalDateTime userCreatedAt = userCreatedAtZoned.toLocalDateTime();
+        return userCreatedAt.isBefore(LIMIT_LDT);
     }
 }
